@@ -1,28 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+const TrafficLight = () => {
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-            
+  let [color, setColor] = useState("red");
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  let lightStyle = lightColor => {
+    return {
+      width: "75px",
+      height: "75px",
+      borderRadius: "50%",
+      margin: "7px 6px",
+      backgroundColor: lightColor,
+      boxShadow:
+        color == lightColor ? "0 0 18px 9px lightyellow" : "none",
+    };
+  };
+
+  return (
+    <div style = {{ textAlign: "center", marginTop: "50px" }}>
+      <div style = {{
+            width: "125px",
+            backgroundColor: "black",
+            padding: "20px",
+            borderRadius: "20px",
+            margin: "20px auto",
+        }}
+      >
+        <div style = {lightStyle("red")} onClick = {() => {
+          setColor("red");
+          console.log("Red light!");
+        }}>
+        </div>
+        
+        <div style = {lightStyle("yellow")} onClick = {() => {
+          setColor("yellow");
+          console.log("Yellow light!");
+        }}>
+        </div>
+        
+        <div style = {lightStyle("green")} onClick ={() => {
+          setColor("green");
+          console.log("Green light!")
+        }}>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-export default Home;
+export default TrafficLight;
